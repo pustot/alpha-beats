@@ -2,7 +2,16 @@ import "purecss/build/pure.css";
 import * as React from "react";
 import "../styles.scss";
 
-import { Container, Grid, IconButton, Link as MuiLink, Stack, Typography } from "@mui/material";
+import {
+    Container,
+    FormControlLabel,
+    Grid,
+    IconButton,
+    Link as MuiLink,
+    Stack,
+    Switch,
+    Typography,
+} from "@mui/material";
 
 import { getLocaleText, I18nText } from "../data/I18n";
 
@@ -15,6 +24,7 @@ export default function Home(props: { lang: keyof I18nText }) {
     const [char, setChar] = React.useState("ا");
     const [roma, setRoma] = React.useState("ʾ/ʔ/");
     const [isInitialized, setIsInitialized] = React.useState(false);
+    const [isLarge, setIsLarge] = React.useState(false);
 
     React.useEffect(() => {
         (async () => {
@@ -44,6 +54,10 @@ export default function Home(props: { lang: keyof I18nText }) {
         }, 2000);
     };
 
+    const handleSwitchLarge = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsLarge(event.target.checked);
+    };
+
     return (
         <Container maxWidth="md">
             <Stack spacing={4} px={2} pb={4}>
@@ -51,7 +65,18 @@ export default function Home(props: { lang: keyof I18nText }) {
                     Display flashcards with letter and pronunciation (with romanization) with your comfortable speed.
                 </Typography>
 
-                <FlashCard char={char} roma={roma}></FlashCard>
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={isLarge}
+                            onChange={handleSwitchLarge}
+                            inputProps={{ "aria-label": "controlled" }}
+                        />
+                    }
+                    label="Large Font"
+                />
+
+                <FlashCard char={char} roma={roma} isLarge={isLarge}></FlashCard>
 
                 {/* Search Module */}
                 {/* <TextField defaultValue="វិទ្យាស្ថានខុងជឺនៃរាជបណ្ឌិត្យសភាកម្ពុជា" id="input" onChange={(v) => setSentence(v.target.value)}
@@ -63,6 +88,7 @@ export default function Home(props: { lang: keyof I18nText }) {
         </Stack> */}
 
                 {/* Speed Changing Module */}
+                
             </Stack>
         </Container>
     );

@@ -59,8 +59,8 @@ export default function App() {
                         <br />
 
                         <Routes>
-                            <Route path="/" element={<Home lang={lang} />} />
-                            <Route path="/home" element={<Home lang={lang} />} />
+                            <Route path="/alpha-beats" element={<Home lang={lang} />} />
+                            <Route path="/alpha-beats/home" element={<Home lang={lang} />} />
                             {/* <Route path="/blog/:fileName" element={<BlogArticle lang={lang} />} /> */}
                         </Routes>
 

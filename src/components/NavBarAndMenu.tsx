@@ -101,7 +101,7 @@ export default function NavBarAndMenu(props: {
                     </ListItemButton>
                 </ListItem>
                 <ListItem key="home" disablePadding>
-                    <ListItemButton component={Link} to="/">
+                    <ListItemButton component={Link} to="/alpha-beats">
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
@@ -197,7 +197,7 @@ export default function NavBarAndMenu(props: {
                                 fontSize: 16,
                             }}
                             component={Link}
-                            to="/"
+                            to="/alpha-beats"
                         >
                             {getLocaleText(
                             {

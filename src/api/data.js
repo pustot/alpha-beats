@@ -1,6 +1,6 @@
 // import { PronunciationData } from "../types/pronunciation";
 
-const fetchData = async (path) => {
+export const fetchData = async (path) => {
   const response = await fetch(process.env.PUBLIC_URL + path);
   const data = await response.text();
   return data

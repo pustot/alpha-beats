@@ -16,7 +16,7 @@ import {
 import { getLocaleText, I18nText } from "../utils/I18n";
 
 import FlashCard from "../components/FlashCard";
-import { promiseDataSmall, promiseDataLarge } from "../api/data";
+import { fetchData, promiseDataLarge } from "../api/data";
 
 export default function Home(props: { lang: keyof I18nText }) {
     const { lang } = props;
@@ -31,8 +31,11 @@ export default function Home(props: { lang: keyof I18nText }) {
             // const [pronunciationDataSmall, pronunciationDataLarge] =
             //   await Promise.all([promiseDataSmall, promiseDataLarge]);
             // setPronunciationDataSmall(pronunciationDataSmall);
-            const pronunciationDataLarge0 = await promiseDataLarge;
-            setPronunciationDataLarge(pronunciationDataLarge0);
+            const araData = await fetchData("/data/arabic.tsv");
+            const devaData = await fetchData("/data/devanagari.tsv");
+            const hebData = await fetchData("/data/hebrew.tsv");
+            const tamData = await fetchData("/data/tamil.tsv");
+            setPronunciationDataLarge([...araData, ...devaData, ...hebData, ...tamData]);
             setIsInitialized(true);
         })();
     }, []);

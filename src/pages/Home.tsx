@@ -13,7 +13,7 @@ import {
     Typography,
 } from "@mui/material";
 
-import { getLocaleText, I18nText } from "../data/I18n";
+import { getLocaleText, I18nText } from "../utils/I18n";
 
 import FlashCard from "../components/FlashCard";
 import { promiseDataSmall, promiseDataLarge } from "../api/data";

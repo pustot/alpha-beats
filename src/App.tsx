@@ -5,14 +5,11 @@ import * as React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./styles.scss";
 
-import NavBarAndMenu from "./components/NavBarAndMenu";
-import { I18nText } from "./data/I18n";
+import NavBarAndMenu, { NavItem } from "./components/NavBarAndMenu";
+import { I18nText } from "./utils/I18n";
 import Home from "./pages/Home";
-
-export const ColorModeContext = React.createContext({
-    toggleColorMode: () => {},
-});
-export const LangContext = React.createContext("en");
+import Footer from "./components/Footer";
+import HomeIcon from "@mui/icons-material/Home";
 
 export default function App() {
     const [lang, setLang] = React.useState<keyof I18nText>(
@@ -22,15 +19,10 @@ export default function App() {
     const systemColor: string =
         window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     const [mode, setMode] = React.useState<string>(localStorage.getItem("yangchnx/0.1/mode") || systemColor);
-    const colorMode = React.useMemo(
-        () => ({
-            toggleColorMode: () => {
-                localStorage.setItem("yangchnx/0.1/mode", mode === "light" ? "dark" : "light");
-                setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
-            },
-        }),
-        []
-    );
+    const toggleColorMode = () => {
+        localStorage.setItem("yangchnx/0.1/mode", mode === "light" ? "dark" : "light");
+        setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
+    };
 
     const theme: Theme = React.useMemo(
         () =>
@@ -46,48 +38,66 @@ export default function App() {
         setLang(tar);
     };
 
+    const title: I18nText = {
+        "en": "Alpha Beats",
+        "zh-Hant": "字母跳動",
+        "zh-Hans": "字母跳动",
+        "tto": "rSNr be7",
+        "tto-bro": "98d3Vn2 Lan3D8nZ2",
+        "ja": "アルファ ビーツ",
+        "de": "Alpha Beats",
+        "ko": "알파 비트",
+        "fr": "Alpha Beats",
+    };
+
+    const navItems: NavItem[] = [
+        {
+            name: {
+                "en": "Flashcard",
+                "zh-Hant": "字卡",
+                "zh-Hans": "字卡",
+                "tto-bro": "98d3 Ar",
+                "tto": "9d ArD",
+                "ja": "フラッシュカード",
+                "de": "Speicherkarte",
+                "ko": "플래시카드",
+                "fr": "Carte mémoire",
+            },
+            link: "/alpha-beats",
+            icon: <HomeIcon />,
+        },
+    ];
+
+    const repoLink = "https://github.com/yangchnx/alpha-beats";
+
     return (
-        <ColorModeContext.Provider value={colorMode}>
-            <LangContext.Provider value={lang}>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <BrowserRouter>
-                        <NavBarAndMenu theme={theme} langSetter={langSetter} />
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <BrowserRouter>
+                <NavBarAndMenu
+                    theme={theme}
+                    toggleColorMode={toggleColorMode}
+                    lang={lang}
+                    langSetter={langSetter}
+                    title={title}
+                    navItems={navItems}
+                />
 
-                        <br />
-                        <br />
-                        <br />
+                <br />
+                <br />
+                <br />
 
-                        <Routes>
-                            <Route path="/alpha-beats" element={<Home lang={lang} />} />
-                            <Route path="/alpha-beats/home" element={<Home lang={lang} />} />
-                            {/* <Route path="/blog/:fileName" element={<BlogArticle lang={lang} />} /> */}
-                        </Routes>
+                <Routes>
+                    <Route path="/alpha-beats" element={<Home lang={lang} />} />
+                    <Route path="/alpha-beats/home" element={<Home lang={lang} />} />
+                    {/* <Route path="/blog/:fileName" element={<BlogArticle lang={lang} />} /> */}
+                </Routes>
 
-                        <br />
-                        <br />
+                <br />
+                <br />
 
-                        <Divider />
-                        <br />
-                        <footer>
-                            <Typography align="center">
-                                Chenxi Yang <br />
-                                <a href="https://github.com/yangchnx">
-                                    <img
-                                        src={
-                                            "https://img.shields.io/badge/-@yangchnx-" +
-                                            (theme.palette.mode === "dark" ? "000000" : "ffffff") +
-                                            "?style=flat-square&logo=github&logoColor=" +
-                                            (theme.palette.mode === "dark" ? "white" : "black")
-                                        }
-                                    />
-                                </a>
-                            </Typography>
-                        </footer>
-                        <br />
-                    </BrowserRouter>
-                </ThemeProvider>
-            </LangContext.Provider>
-        </ColorModeContext.Provider>
+                <Footer repoLink={repoLink} theme={theme} />
+            </BrowserRouter>
+        </ThemeProvider>
     );
 }

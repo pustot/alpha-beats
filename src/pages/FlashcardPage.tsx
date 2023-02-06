@@ -18,6 +18,9 @@ import { getLocaleText, I18nText } from "../utils/I18n";
 import FlashCard from "../components/FlashCard";
 import { fetchData, promiseDataLarge } from "../api/data";
 
+const scriptList = ["arabic", "devanagari", "hebrew", "tamil"];
+const dataList = new Map<string, string[][]>();
+
 export default function Home(props: { lang: keyof I18nText }) {
     const { lang } = props;
     const [pronunciationDataLarge, setPronunciationDataLarge] = React.useState([["ا", "ʾ/ʔ/"]]);
@@ -25,17 +28,23 @@ export default function Home(props: { lang: keyof I18nText }) {
     const [roma, setRoma] = React.useState("ʾ/ʔ/");
     const [isInitialized, setIsInitialized] = React.useState(false);
     const [isLarge, setIsLarge] = React.useState(false);
+    const [script, setScript] = React.useState("arabic")
 
     React.useEffect(() => {
         (async () => {
             // const [pronunciationDataSmall, pronunciationDataLarge] =
             //   await Promise.all([promiseDataSmall, promiseDataLarge]);
             // setPronunciationDataSmall(pronunciationDataSmall);
-            const araData = await fetchData("/data/arabic.tsv");
-            const devaData = await fetchData("/data/devanagari.tsv");
-            const hebData = await fetchData("/data/hebrew.tsv");
-            const tamData = await fetchData("/data/tamil.tsv");
-            setPronunciationDataLarge([...araData, ...devaData, ...hebData, ...tamData]);
+            for (let script of scriptList) {
+                const data = await fetchData("/data/" + script + ".tsv");
+                dataList.set(script, data);
+                // console.log("get " + script + ' ' + dataList.get(script))
+            }
+            // const araData = await fetchData("/data/arabic.tsv");
+            // const devaData = await fetchData("/data/devanagari.tsv");
+            // const hebData = await fetchData("/data/hebrew.tsv");
+            // const tamData = await fetchData("/data/tamil.tsv");
+            // setPronunciationDataLarge([...araData, ...devaData, ...hebData, ...tamData]);
             setIsInitialized(true);
         })();
     }, []);
@@ -48,8 +57,10 @@ export default function Home(props: { lang: keyof I18nText }) {
     }, [isInitialized]);
 
     const refreshBoard = () => {
-        const idx = Math.floor(Math.random() * pronunciationDataLarge.length);
-        const [nextchar, nextroma] = pronunciationDataLarge[idx];
+        const nextScript = scriptList[Math.floor(Math.random() * scriptList.length)];
+        const idx = Math.floor(Math.random() * dataList.get(nextScript)!.length);
+        const [nextchar, nextroma] = dataList.get(nextScript)![idx];
+        setScript(nextScript);
         setChar(nextchar);
         setRoma("...");
         window.setTimeout(() => {
@@ -106,7 +117,7 @@ export default function Home(props: { lang: keyof I18nText }) {
                     )}
                 />
 
-                <FlashCard char={char} roma={roma} isLarge={isLarge}></FlashCard>
+                <FlashCard script={script} char={char} roma={roma} isLarge={isLarge}></FlashCard>
 
                 {/* Search Module */}
                 {/* <TextField defaultValue="វិទ្យាស្ថានខុងជឺនៃរាជបណ្ឌិត្យសភាកម្ពុជា" id="input" onChange={(v) => setSentence(v.target.value)}

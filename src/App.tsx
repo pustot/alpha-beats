@@ -7,7 +7,7 @@ import "./styles.scss";
 
 import NavBarAndMenu, { NavItem } from "./components/NavBarAndMenu";
 import { I18nText } from "./utils/I18n";
-import Home from "./pages/Home";
+import Home from "./pages/FlashcardPage";
 import Footer from "./components/Footer";
 import HomeIcon from "@mui/icons-material/Home";
 

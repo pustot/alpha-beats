@@ -16,7 +16,7 @@ import {
 import { getLocaleText, I18nText } from "../utils/I18n";
 
 import FlashCard from "../components/FlashCard";
-import { fetchData, promiseDataLarge } from "../api/data";
+import { fetchData } from "../api/data";
 
 const scriptList = ["arabic", "devanagari", "hebrew", "tamil"];
 const dataList = new Map<string, string[][]>();

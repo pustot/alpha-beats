@@ -150,15 +150,16 @@ export default function NavBarAndMenu(props: {
                             inset
                             primary={getLocaleText(
                                 {
-                                    "en": "Chenxi Yang",
-                                    "zh-Hant": "楊晨曦",
-                                    "zh-Hans": "杨晨曦",
-                                    "tto-bro": "EerZ T8eHXQea",
+                                    //"eo": "Tva-Niu",
+                                    "zh-Hant": "朵牛",
+                                    "zh-Hans": "朵牛",
+                                    "en": "Twaq-Ngu",
+                                    "tto-bro": "Dnr2Zu",
                                     "tto": "hnCLo LrnKrHL",
-                                    "ja": "楊晨曦",
-                                    "de": "Chenxi Yang",
-                                    "ko": "양신희",
-                                    "fr": "Chenxi Yang",
+                                    "ja": "朵牛（だぎゅう）",
+                                    "de": "Twaq-Ngu",
+                                    "ko": "타우(朵牛)",
+                                    "fr": "Twaq-Ngu",
                                 },
                                 lang
                             )}

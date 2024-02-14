@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/alpha-beats/static/css/main.192589b5.css",
-    "main.js": "/alpha-beats/static/js/main.853c7abb.js",
-    "index.html": "/alpha-beats/index.html",
-    "main.192589b5.css.map": "/alpha-beats/static/css/main.192589b5.css.map",
-    "main.853c7abb.js.map": "/alpha-beats/static/js/main.853c7abb.js.map"
+    "main.css": "/static/css/main.192589b5.css",
+    "main.js": "/static/js/main.d8f9434e.js",
+    "index.html": "/index.html",
+    "main.192589b5.css.map": "/static/css/main.192589b5.css.map",
+    "main.d8f9434e.js.map": "/static/js/main.d8f9434e.js.map"
   },
   "entrypoints": [
     "static/css/main.192589b5.css",
-    "static/js/main.853c7abb.js"
+    "static/js/main.d8f9434e.js"
   ]
 }

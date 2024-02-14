@@ -13,14 +13,14 @@ import HomeIcon from "@mui/icons-material/Home";
 
 export default function App() {
     const [lang, setLang] = React.useState<keyof I18nText>(
-        (localStorage.getItem("yangchnx/0.1/lang") as keyof I18nText) || ("en" as keyof I18nText)
+        (localStorage.getItem("twaqngu/0.1/lang") as keyof I18nText) || ("en" as keyof I18nText)
     );
 
     const systemColor: string =
         window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const [mode, setMode] = React.useState<string>(localStorage.getItem("yangchnx/0.1/mode") || systemColor);
+    const [mode, setMode] = React.useState<string>(localStorage.getItem("twaqngu/0.1/mode") || systemColor);
     const toggleColorMode = () => {
-        localStorage.setItem("yangchnx/0.1/mode", mode === "light" ? "dark" : "light");
+        localStorage.setItem("twaqngu/0.1/mode", mode === "light" ? "dark" : "light");
         setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
     };
 
@@ -68,7 +68,7 @@ export default function App() {
         },
     ];
 
-    const repoLink = "https://github.com/yangchnx/alpha-beats";
+    const repoLink = "https://github.com/twaqngu/alpha-beats";
 
     return (
         <ThemeProvider theme={theme}>
@@ -88,8 +88,8 @@ export default function App() {
                 <br />
 
                 <Routes>
-                    <Route path="/alpha-beats" element={<Home lang={lang} />} />
-                    <Route path="/alpha-beats/home" element={<Home lang={lang} />} />
+                    <Route path="" element={<Home lang={lang} />} />
+                    <Route path="/home" element={<Home lang={lang} />} />
                     {/* <Route path="/blog/:fileName" element={<BlogArticle lang={lang} />} /> */}
                 </Routes>
 

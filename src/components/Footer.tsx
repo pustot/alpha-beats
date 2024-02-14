@@ -13,7 +13,7 @@ export default function Footer(props: { repoLink: string; theme: Theme }) {
                     <a href={repoLink}>
                         <img
                             src={
-                                "https://img.shields.io/badge/-@yangchnx-" +
+                                "https://img.shields.io/badge/-@twaqngu-" +
                                 (theme.palette.mode === "dark" ? "000000" : "ffffff") +
                                 "?style=flat-square&logo=github&logoColor=" +
                                 (theme.palette.mode === "dark" ? "white" : "black")

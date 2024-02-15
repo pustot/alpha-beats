@@ -1,5 +1,5 @@
 # alpha-beats
 
-https://alpha-beats.pustot.com/
+https://alpha-beats.twaqngu.com/
 
 Training on different kinds of alphabet or other kinds of writing systems.

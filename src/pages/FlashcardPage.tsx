@@ -36,7 +36,7 @@ export default function Home(props: { lang: keyof I18nText }) {
             //   await Promise.all([promiseDataSmall, promiseDataLarge]);
             // setPronunciationDataSmall(pronunciationDataSmall);
             for (let script of scriptList) {
-                const data = await fetchData("https://twaqngu.github.io/public/alpha-beats/" + script + ".tsv");
+                const data = await fetchData("https://pustot.github.io/public/alpha-beats/" + script + ".tsv");
                 dataList.set(script, data);
                 // console.log("get " + script + ' ' + dataList.get(script))
             }

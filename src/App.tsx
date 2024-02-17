@@ -13,14 +13,14 @@ import HomeIcon from "@mui/icons-material/Home";
 
 export default function App() {
     const [lang, setLang] = React.useState<keyof I18nText>(
-        (localStorage.getItem("twaqngu/0.1/lang") as keyof I18nText) || ("en" as keyof I18nText)
+        (localStorage.getItem("pustot/0.1/lang") as keyof I18nText) || ("en" as keyof I18nText)
     );
 
     const systemColor: string =
         window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const [mode, setMode] = React.useState<string>(localStorage.getItem("twaqngu/0.1/mode") || systemColor);
+    const [mode, setMode] = React.useState<string>(localStorage.getItem("pustot/0.1/mode") || systemColor);
     const toggleColorMode = () => {
-        localStorage.setItem("twaqngu/0.1/mode", mode === "light" ? "dark" : "light");
+        localStorage.setItem("pustot/0.1/mode", mode === "light" ? "dark" : "light");
         setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
     };
 
@@ -68,7 +68,7 @@ export default function App() {
         },
     ];
 
-    const repoLink = "https://github.com/twaqngu/alpha-beats";
+    const repoLink = "https://github.com/pustot/alpha-beats";
 
     return (
         <ThemeProvider theme={theme}>

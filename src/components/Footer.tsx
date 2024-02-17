@@ -9,11 +9,11 @@ export default function Footer(props: { repoLink: string; theme: Theme }) {
             <br />
             <footer>
                 <Typography align="center">
-                TwaqNgu <br />
+                Pusto T <br />
                     <a href={repoLink}>
                         <img
                             src={
-                                "https://img.shields.io/badge/-@twaqngu-" +
+                                "https://img.shields.io/badge/-@pustot-" +
                                 (theme.palette.mode === "dark" ? "000000" : "ffffff") +
                                 "?style=flat-square&logo=github&logoColor=" +
                                 (theme.palette.mode === "dark" ? "white" : "black")

@@ -9,7 +9,7 @@ export default function Footer(props: { repoLink: string; theme: Theme }) {
             <br />
             <footer>
                 <Typography align="center">
-                Pusto T <br />
+                    Pusto T <br />
                     <a href={repoLink}>
                         <img
                             src={
